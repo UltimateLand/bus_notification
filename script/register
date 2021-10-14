@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+rails runner "Receiver.register(\"$1\")"
