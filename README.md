@@ -1,24 +1,12 @@
-# README
+# Bus No.672 notification
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Send notification to registered emails if No.672 is arriving in 10 minutes.
 
-Things you may want to cover:
+## Prerequisite
 
-* Ruby version
+* Work under Linux environment.
 
-* System dependencies
+* PostgreSQL installed.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Get started
+Set environment variables `SMTP_SERVER`, `DOMAIN_NAME`, `SMTP_USER_NAME`, `SMTP_PASSWORD` in `~/.bashrc` for using SMTP service. Then change directory into project, use command `source script/setup` to setup environment, and use command `source script/register $YOUR_EMAIL` to register notification.
