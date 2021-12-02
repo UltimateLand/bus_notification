@@ -44,10 +44,11 @@ module Crawler
       request['Accept'] = 'application/json'
       request['Accept-Encoding'] = 'gzip' if gzip
       request['X-Date'] = timestamp
-      request['Authorization'] = %Q(hmac username=\"#{@app_id}\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"#{hmac}\")
+      request['Authorization'] =
+        %(hmac username=\"#{@app_id}\", algorithm=\"hmac-sha1\", headers=\"x-date\", signature=\"#{hmac}\")
 
       req_options = {
-        use_ssl: uri_parser.scheme == 'https',
+        use_ssl: uri_parser.scheme == 'https'
       }.merge(options)
 
       response = Net::HTTP.start(uri_parser.hostname, uri_parser.port, req_options) do |http|
@@ -66,23 +67,23 @@ module Crawler
         OpenSSL::HMAC.digest(
           OpenSSL::Digest.new('sha1'),
           key,
-          value,
+          value
         )
-      ).strip()
+      ).strip
     end
 
     def parse_json_response(response)
       response_body = case response.header['content-encoding']
-      when 'gzip'
-        sio = StringIO.new(response.body)
-        gz = Zlib::GzipReader.new(sio)
-        gz.read()
-      else
-        response.body
-      end
+                      when 'gzip'
+                        sio = StringIO.new(response.body)
+                        gz = Zlib::GzipReader.new(sio)
+                        gz.read
+                      else
+                        response.body
+                      end
 
       JSON.parse(response_body.force_encoding('UTF-8'))
-    rescue => e
+    rescue StandardError => e
       puts "parse json response error!, #{e}"
       nil
     end
