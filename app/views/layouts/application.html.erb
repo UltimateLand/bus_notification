@@ -13,20 +13,22 @@
   <body>
     <%= render partial: 'application/header' %>
 
+    <br/>
+
     <% if flash[:notice] %>
-      <br/>
       <div class="alert alert-primary alert-dismissible fade show" role="alert">
         <%= flash[:notice] %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+      <% flash[:notice] = nil %>
     <% end %>
 
     <% if flash[:alert] %>
-      <br/>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <%= flash[:alert] %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+      <% flash[:alert] = nil %>
     <% end %>
 
     <%= yield %>
