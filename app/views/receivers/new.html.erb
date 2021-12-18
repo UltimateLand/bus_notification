@@ -1,5 +1,5 @@
 <h1>Notification registry</h1>
 <%= form_for @receiver do |receiver| %>
-  <%= receiver.text_field :email %>
+  <%= receiver.text_field :email, placeholder: 'someone@example.com' %>
   <%= receiver.submit "Submit" %>
 <% end %>

@@ -16,7 +16,7 @@ class ReceiversController < ApplicationController
     else
       flash[:alert] = "#{@receiver.email} couldn't register because #{error_message}"
 
-      render :new
+      render action: :new
     end
   end
 
